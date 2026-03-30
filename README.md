@@ -46,7 +46,7 @@ npm test
 
 ## How we'll evaluate
 
-Your work is assessed by running `npm test`. All 17 tests should pass for full marks on Part 1.
+Your work is assessed by running `npm test`. All 19 tests should pass for full marks on Part 1.
 
 For Part 2, we'll review the code manually — looking at component structure, TypeScript usage, and how you handle the booking flow.
 
