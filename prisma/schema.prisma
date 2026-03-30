@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Tutor {
+  id        String    @id @default(cuid())
+  name      String
+  subject   String
+  bio       String?
+  hourlyRate Int      @default(30)
+  sessions  Session[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Student {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  bookings  Booking[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Session {
+  id        String    @id @default(cuid())
+  title     String
+  tutor     Tutor     @relation(fields: [tutorId], references: [id])
+  tutorId   String
+  startsAt  DateTime
+  endsAt    DateTime
+  capacity  Int       @default(1)
+  bookings  Booking[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Booking {
+  id        String        @id @default(cuid())
+  student   Student       @relation(fields: [studentId], references: [id])
+  studentId String
+  session   Session       @relation(fields: [sessionId], references: [id])
+  sessionId String
+  status    String        @default("confirmed") // confirmed | cancelled
+  notes     String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@unique([studentId, sessionId])
+}
