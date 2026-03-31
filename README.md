@@ -34,6 +34,9 @@ We are **not** judging visual design. We're looking at TypeScript quality, state
 # Install dependencies
 npm install
 
+# Setup local ENV
+cp .env.example .env
+
 # Set up the database (push schema + seed data)
 npm run db:setup
 

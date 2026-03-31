@@ -4,6 +4,7 @@ prisma/dev.db
 prisma/dev.db-journal
 .env
 *.tsbuildinfo
+next-env.d.ts
 
 # Lock files
 package-lock.json
